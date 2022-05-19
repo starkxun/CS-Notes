@@ -1,0 +1,145 @@
+
+
+
+## ChecketPoint 0 Networking Warmup
+
+
+### 2 NetWorking by hand
+
+
+#### 2.1 Fetch the for Web page
+
+在Linux终端下执行命令：
+
+```shell
+talnet cs144.keithw.org http
+```
+
+回显如下：
+
+```shell
+Trying 104.196.238.229...
+Connected to cs144.keithw.org.
+Escape character is '^]'.
+```
+
+根据教材，依次输入下面的代码：
+
+```shell
+GET /hello HTTP/1.1	<Enter
+Host: cs144.keithw.org	<Enter
+Connection: close	<Enter
+```
+
+可以先在记事本里敲下这些代码，然后复制进去，防止手速过慢导致网站关闭连接。`Enter`表示回车。
+
+**这里的操作我出了一些问题，不能正确回显结果，总是返回连接超时的界面，此问题待解决。**
+
+Assignment任务暂时搁置，网络连接失败。
+
+
+
+
+
+#### 2.2 Send yourself an email
+
+这个下次再做,参考博客:
+https://www.misaka-9982.com/2022/01/14/CS144-Lab0/
+
+
+
+#### 2.3 Linstening and connecting
+
+说实话,第一次发现这个功能的时候还是挺兴奋的,居然还能这么玩.
+
+在终端执行如下命令:
+
+```shell
+netcat -v -l -p 9090
+```
+
+如果一切正常,会看到如下回显:
+
+```shell
+listening on [any] 9090 ...
+```
+
+继续打开另一个终端,输入下面的命令:
+
+```shell
+telnet localhost 9090
+```
+
+如果一切正常,会看到如回显
+
+```shell
+Trying ::1...
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+```
+
+到这里就实现了`netcat`窗口对`telnet`窗口的监听.
+
+在其中任意一个窗口输入内容,按下回车,在另一个窗口就会显示出来.
+
+
+
+
+
+### 3 Writing a networking program using an OS stream socket
+
+
+#### 3.1 Let's get start -fetching and building the starter code 
+
+这一步把远程的代码克隆到本地:
+
+```shell
+git clone https://github.com/cs144/sponge
+```
+
+进入sponge文件夹:
+
+```shell
+cd sponge
+```
+
+创建一个目录来编译实验软件
+
+```shell
+mkdir build
+```
+
+进入build目录下
+
+```shell
+cd build
+```
+
+编译源代码
+
+```shell
+make
+```
+
+等待编译完成.
+
+`sponge/writeups/lab0.md` file这个文件是学校要求和代码一起提交的题解报告.
+
+
+
+
+#### 3.3 Reading the Sponge documentation
+
+阅读官方准备的初学者文档:
+
+https://cs144.github.io/doc/lab0
+
+着重了解 libsponge/util目录下 `FileDescriptor`, `Socket`, `TCPSocket` 和 `Adress`三个头文件是怎么定义接口的
+
+
+
+#### 3.4 Writing webget
+
+
+
